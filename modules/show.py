@@ -52,9 +52,12 @@ def show(class_name, download_dir, label_dir,total_images, index):
 
     for line in f:        
         # each row in a file is class_name, XMin, YMix, XMax, YMax
-        match_class_name = re.compile('^[a-zA-Z]+(\s+[a-zA-Z]+)*').match(line)
+        match_class_name = re.compile('^[a-zA-Z_]+(\s+[a-zA-Z_]+)*').match(line)
         class_name = line[:match_class_name.span()[1]]
+
         ax = line[match_class_name.span()[1]:].lstrip().rstrip().split(' ')
+        #ax = line[match_class_name.span()[1]:].lstrip(',').rstrip().split(',') #on ignore ce qu'il y a avant la premiere virgule, on prend tout ce qu'il y a entre les virgules
+        print(ax)
 	# opencv top left bottom right
 
         if class_name not in class_list:
